@@ -18,7 +18,8 @@ from sparkperf.config_utils import FlagSet, JavaOptionSet, OptionSet, ConstantOp
 # ================================ #
 
 # Point to an installation of Spark on the cluster.
-SPARK_HOME_DIR = "/global/common/software/spark/1.5.1"
+#SPARK_HOME_DIR = "/usr/common/software/spark/1.5.1"
+SPARK_HOME_DIR =  os.environ['SPARK_WORKER_DIR']
 
 # Use a custom configuration directory
 SPARK_CONF_DIR = SPARK_HOME_DIR + "/conf"
