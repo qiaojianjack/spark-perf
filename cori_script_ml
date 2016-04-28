@@ -2,12 +2,12 @@
 
 #SBATCH -p regular
 #SBATCH -N 2
-#SBATCH -t 05:10:00
+#SBATCH -t 10:00:00
 #SBATCH -e mysparkjob_%j.err
 #SBATCH -o mysparkjob_%j.out
 #SBATCH --ccm
 
-module load spark
+module load spark/1.6.0
 
 start-all.sh
 

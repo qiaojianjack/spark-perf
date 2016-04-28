@@ -7,7 +7,7 @@
 #SBATCH -o mysparkjob_%j.out
 #SBATCH --ccm
 
-module load spark
+module load spark/1.6.0
 
 start-all.sh
 
