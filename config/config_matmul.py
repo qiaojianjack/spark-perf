@@ -440,7 +440,7 @@ MLLIB_CLASSIFICATION_TEST_OPTS = MLLIB_GLM_TEST_OPTS + [
     # Expected fraction of examples which are negative
     OptionSet("per-negative", [0.3]),
     # Optimization algorithm: sgd, l-bfgs
-    OptionSet("optimizer", ["sgd"])
+    OptionSet("optimizer", ["sgd", "l-bfgs"])
 ]
 
 # GLM Classification Tests #
@@ -449,10 +449,10 @@ MLLIB_GLM_CLASSIFICATION_TEST_OPTS = MLLIB_CLASSIFICATION_TEST_OPTS + [
     OptionSet("loss", ["logistic"])
 ]
 
-MLLIB_TESTS += [("glm-classification", MLLIB_PERF_TEST_RUNNER, SCALE_FACTOR,
-                 MLLIB_JAVA_OPTS, [ConstantOption("glm-classification")] +
-                 MLLIB_GLM_CLASSIFICATION_TEST_OPTS)]
-
+#MLLIB_TESTS += [("glm-classification", MLLIB_PERF_TEST_RUNNER, SCALE_FACTOR,
+#                 MLLIB_JAVA_OPTS, [ConstantOption("glm-classification")] +
+#                 MLLIB_GLM_CLASSIFICATION_TEST_OPTS)]
+#
 if MLLIB_SPARK_VERSION >= 1.5:
     MLLIB_GLM_ELASTIC_NET_TEST_OPTS = MLLIB_REGRESSION_CLASSIFICATION_TEST_OPTS + [
         # The max number of iterations for LBFGS/OWLQN
@@ -680,10 +680,10 @@ MLLIB_BLOCK_MATRIX_MULT_TEST_OPTS = MLLIB_COMMON_OPTS + [
     OptionSet("n", [10000], can_scale=False),
     OptionSet("block-size", [1024], can_scale=False)]
 
-#if MLLIB_SPARK_VERSION >= 1.3:
-#   MLLIB_TESTS += [("block-matrix-mult", MLLIB_PERF_TEST_RUNNER, SCALE_FACTOR,
-#                   MLLIB_JAVA_OPTS, [ConstantOption("block-matrix-mult")] + MLLIB_BLOCK_MATRIX_MULT_TEST_OPTS)]
-#
+if MLLIB_SPARK_VERSION >= 1.3:
+   MLLIB_TESTS += [("block-matrix-mult", MLLIB_PERF_TEST_RUNNER, SCALE_FACTOR,
+                   MLLIB_JAVA_OPTS, [ConstantOption("block-matrix-mult")] + MLLIB_BLOCK_MATRIX_MULT_TEST_OPTS)]
+
 # Statistic Toolkit Tests #
 MLLIB_STATS_TEST_OPTS = MLLIB_COMMON_OPTS
 
