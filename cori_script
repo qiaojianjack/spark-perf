@@ -13,6 +13,6 @@ start-all.sh
 
 SPARK_HOME_DIR=/global/common/cori/software/spark/1.5.1
 
-./spark-perf/bin/run --config=./spark-perf/config/config_ml.py 
+./bin/run --config=./config/config_ml.py 
 
 stop-all.sh
