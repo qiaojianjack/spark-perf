@@ -18,8 +18,7 @@ from sparkperf.config_utils import FlagSet, JavaOptionSet, OptionSet, ConstantOp
 # ================================ #
 
 # Point to an installation of Spark on the cluster.
-SPARK_HOME_DIR='/global/common/cori/software/spark/1.5.1'
-#SPARK_HOME_DIR =  os.environ['SPARK_HOME_DIR']
+SPARK_HOME_DIR = os.environ['SPARK_WORKER_DIR']
 
 # Use a custom configuration directory
 SPARK_CONF_DIR = SPARK_HOME_DIR + "/conf"
@@ -125,7 +124,7 @@ PYTHON_MLLIB_OUTPUT_FILENAME = "results/python_mllib_perf_output_%s_%s" % (
 # number of records in a generated dataset) if you are running the tests with more
 # or fewer nodes. When developing new test suites, you might want to set this to a small
 # value suitable for a single machine, such as 0.001.
-SCALE_FACTOR = 0.5
+SCALE_FACTOR = 0.25
 
 assert SCALE_FACTOR > 0, "SCALE_FACTOR must be > 0."
 
