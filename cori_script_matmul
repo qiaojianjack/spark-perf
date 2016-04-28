@@ -11,8 +11,6 @@ module load spark
 
 start-all.sh
 
-SPARK_HOME_DIR=/global/common/cori/software/spark/1.5.1
-
 ./bin/run --config=./config/config_matmul.py 
 
 stop-all.sh
