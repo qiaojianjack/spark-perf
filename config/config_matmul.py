@@ -148,7 +148,7 @@ COMMON_JAVA_OPTS = [
     # Turn event logging on in order better diagnose failed tests. Off by default as it crashes
     # releases prior to 1.0.2
     JavaOptionSet("spark.eventLog.enabled", [True]),
-    JavaOptionSet("spark.eventLog.dir", ["$SCRATCH/spark/spark_event_logs"]),
+    JavaOptionSet("spark.eventLog.dir", ["spark_event_logs"]),
     # To ensure consistency across runs, we disable delay scheduling
     JavaOptionSet("spark.locality.wait", [str(60 * 1000 * 1000)])
 ]
