@@ -18,7 +18,8 @@ from sparkperf.config_utils import FlagSet, JavaOptionSet, OptionSet, ConstantOp
 # ================================ #
 
 # Point to an installation of Spark on the cluster.
-SPARK_HOME_DIR = os.environ['SPARK_WORKER_DIR']
+SPARK_HOME_DIR = "/usr/common/software/spark/1.6.0"
+#SPARK_HOME_DIR =  os.environ['SPARK_WORKER_DIR']
 
 # Use a custom configuration directory
 SPARK_CONF_DIR = SPARK_HOME_DIR + "/conf"
@@ -90,7 +91,7 @@ PREP_STREAMING_TESTS = False
 PREP_MLLIB_TESTS = True
 
 # Whether to warm up local disks (warm-up is only necesary on EC2).
-DISK_WARMUP = True
+DISK_WARMUP = False
 
 # Total number of bytes used to warm up each local directory.
 DISK_WARMUP_BYTES = 200 * 1024 * 1024
@@ -147,7 +148,7 @@ COMMON_JAVA_OPTS = [
     # Turn event logging on in order better diagnose failed tests. Off by default as it crashes
     # releases prior to 1.0.2
     JavaOptionSet("spark.eventLog.enabled", [True]),
-    JavaOptionSet("spark.eventLog.dir", ["$SCRATCH/spark/spark_event_logs"]),
+    JavaOptionSet("spark.eventLog.dir", ["spark_event_logs"]),
     # To ensure consistency across runs, we disable delay scheduling
     JavaOptionSet("spark.locality.wait", [str(60 * 1000 * 1000)])
 ]
@@ -796,4 +797,3 @@ if MLLIB_SPARK_VERSION >= 1.1:
     PYTHON_MLLIB_TESTS += [("python-spearman", "mllib_tests.py", SCALE_FACTOR,
                              MLLIB_JAVA_OPTS, [ConstantOption("SpearmanCorrelationTest")] +
                              MLLIB_SPEARMAN_TEST_OPTS)]
-
