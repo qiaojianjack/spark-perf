@@ -2,17 +2,15 @@
 
 #SBATCH -p regular
 #SBATCH -N 2
-#SBATCH -t 00:30:00
+#SBATCH -t 01:10:00
 #SBATCH -e mysparkjob_%j.err
 #SBATCH -o mysparkjob_%j.out
 #SBATCH --ccm
 
-module load spark
+module load spark/1.6.0
 
 start-all.sh
 
-SPARK_HOME_DIR=/global/common/cori/software/spark/1.5.1
-
-./bin/run --config=./config/config_ml.py 
+./bin/run --config=./config/config_matmul.py 
 
 stop-all.sh

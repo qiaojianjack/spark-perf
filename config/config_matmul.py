@@ -18,7 +18,8 @@ from sparkperf.config_utils import FlagSet, JavaOptionSet, OptionSet, ConstantOp
 # ================================ #
 
 # Point to an installation of Spark on the cluster.
-SPARK_HOME_DIR = "/root/spark"
+#SPARK_HOME_DIR = "/usr/common/software/spark/1.5.1"
+SPARK_HOME_DIR =  os.environ['SPARK_WORKER_DIR']
 
 # Use a custom configuration directory
 SPARK_CONF_DIR = SPARK_HOME_DIR + "/conf"
@@ -27,7 +28,7 @@ SPARK_CONF_DIR = SPARK_HOME_DIR + "/conf"
 # For local clusters: "spark://%s:7077" % socket.gethostname()
 # For Yarn clusters: "yarn"
 # Otherwise, the default uses the specified EC2 cluster
-SPARK_CLUSTER_URL = open("/root/spark-ec2/cluster-url", 'r').readline().strip()
+SPARK_CLUSTER_URL = os.environ['SPARKURL'] #"spark://nid00059:7077"
 IS_YARN_MODE = "yarn" in SPARK_CLUSTER_URL
 IS_MESOS_MODE = "mesos" in SPARK_CLUSTER_URL
 
@@ -124,7 +125,7 @@ PYTHON_MLLIB_OUTPUT_FILENAME = "results/python_mllib_perf_output_%s_%s" % (
 # number of records in a generated dataset) if you are running the tests with more
 # or fewer nodes. When developing new test suites, you might want to set this to a small
 # value suitable for a single machine, such as 0.001.
-SCALE_FACTOR = 0.5
+SCALE_FACTOR = 0.25
 
 assert SCALE_FACTOR > 0, "SCALE_FACTOR must be > 0."
 
@@ -143,11 +144,11 @@ COMMON_JAVA_OPTS = [
     # Fraction of JVM memory used for caching RDDs.
     JavaOptionSet("spark.storage.memoryFraction", [0.66]),
     JavaOptionSet("spark.serializer", ["org.apache.spark.serializer.JavaSerializer"]),
-    JavaOptionSet("spark.executor.memory", ["16g"]),
+    JavaOptionSet("spark.executor.memory", ["100g"]),
     # Turn event logging on in order better diagnose failed tests. Off by default as it crashes
     # releases prior to 1.0.2
     JavaOptionSet("spark.eventLog.enabled", [True]),
-    JavaOptionSet("spark.eventLog.dir", ["file:///root/spark-logs"]),
+    JavaOptionSet("spark.eventLog.dir", ["$SCRATCH/spark/spark_event_logs"]),
     # To ensure consistency across runs, we disable delay scheduling
     JavaOptionSet("spark.locality.wait", [str(60 * 1000 * 1000)])
 ]
