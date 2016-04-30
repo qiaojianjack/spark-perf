@@ -18,8 +18,8 @@ from sparkperf.config_utils import FlagSet, JavaOptionSet, OptionSet, ConstantOp
 # ================================ #
 
 # Point to an installation of Spark on the cluster.
-#SPARK_HOME_DIR = "/usr/common/software/spark/1.5.1"
-SPARK_HOME_DIR =  os.environ['SPARK_WORKER_DIR']
+SPARK_HOME_DIR = "/usr/common/software/spark/1.6.0"
+#SPARK_HOME_DIR =  os.environ['SPARK_WORKER_DIR']
 
 # Use a custom configuration directory
 SPARK_CONF_DIR = SPARK_HOME_DIR + "/conf"
@@ -797,4 +797,3 @@ if MLLIB_SPARK_VERSION >= 1.1:
     PYTHON_MLLIB_TESTS += [("python-spearman", "mllib_tests.py", SCALE_FACTOR,
                              MLLIB_JAVA_OPTS, [ConstantOption("SpearmanCorrelationTest")] +
                              MLLIB_SPEARMAN_TEST_OPTS)]
-

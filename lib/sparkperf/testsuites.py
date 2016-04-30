@@ -126,9 +126,14 @@ class JVMPerfTestSuite(PerfTestSuite):
     @classmethod
     def get_spark_submit_cmd(cls, cluster, config, main_class_or_script, opt_list, stdout_filename,
                              stderr_filename):
-        spark_submit = "%s/bin/spark-submit" % cluster.spark_home
-        cmd = "%s --class %s --master %s --driver-memory %s %s %s 1>> %s 2>> %s" % (
-            spark_submit, main_class_or_script, config.SPARK_CLUSTER_URL,
+        # spark_submit = "%s/bin/spark-submit" % cluster.spark_home
+        # cmd = "%s --class %s --master %s --driver-memory %s %s %s 1>> %s 2>> %s" % (
+        #     spark_submit, main_class_or_script, config.SPARK_CLUSTER_URL,
+        #     config.SPARK_DRIVER_MEMORY, cls.test_jar_path, " ".join(opt_list),
+        #     stdout_filename, stderr_filename)
+
+        cmd = "spark-submit --class %s --master %s --driver-memory %s %s %s 1>> %s 2>> %s" % (
+            main_class_or_script, config.SPARK_CLUSTER_URL,
             config.SPARK_DRIVER_MEMORY, cls.test_jar_path, " ".join(opt_list),
             stdout_filename, stderr_filename)
         return cmd
@@ -265,9 +270,14 @@ class PythonMLlibTests(PerfTestSuite, MLlibTestHelper):
     @classmethod
     def get_spark_submit_cmd(cls, cluster, config, main_class_or_script, opt_list, stdout_filename,
                              stderr_filename):
-        spark_submit = "%s/bin/spark-submit" % cluster.spark_home
-        cmd = "%s --master %s pyspark-tests/%s %s 1>> %s 2>> %s" % (
-            spark_submit, config.SPARK_CLUSTER_URL,
+        # spark_submit = "%s/bin/spark-submit" % cluster.spark_home
+        # cmd = "%s --master %s pyspark-tests/%s %s 1>> %s 2>> %s" % (
+        #     spark_submit, config.SPARK_CLUSTER_URL,
+        #     main_class_or_script, " ".join(opt_list),
+        #     stdout_filename, stderr_filename)
+
+        cmd = "spark-submit --master %s pyspark-tests/%s %s 1>> %s 2>> %s" % (
+            config.SPARK_CLUSTER_URL,
             main_class_or_script, " ".join(opt_list),
             stdout_filename, stderr_filename)
         return cmd
@@ -283,9 +293,13 @@ class PythonTests(PerfTestSuite):
     @classmethod
     def get_spark_submit_cmd(cls, cluster, config, main_class_or_script, opt_list, stdout_filename,
                              stderr_filename):
-        spark_submit = "%s/bin/spark-submit" % cluster.spark_home
-        cmd = "%s --master %s pyspark-tests/%s %s 1>> %s 2>> %s" % (
-            spark_submit, config.SPARK_CLUSTER_URL, main_class_or_script, " ".join(opt_list),
+        # spark_submit = "%s/bin/spark-submit" % cluster.spark_home
+        # cmd = "%s --master %s pyspark-tests/%s %s 1>> %s 2>> %s" % (
+        #     spark_submit, config.SPARK_CLUSTER_URL, main_class_or_script, " ".join(opt_list),
+        #     stdout_filename, stderr_filename)
+
+        cmd = "spark-submit --master %s pyspark-tests/%s %s 1>> %s 2>> %s" % (
+            config.SPARK_CLUSTER_URL, main_class_or_script, " ".join(opt_list),
             stdout_filename, stderr_filename)
         return cmd
 
