@@ -91,7 +91,7 @@ PREP_STREAMING_TESTS = False
 PREP_MLLIB_TESTS = True
 
 # Whether to warm up local disks (warm-up is only necesary on EC2).
-DISK_WARMUP = True
+DISK_WARMUP = False
 
 # Total number of bytes used to warm up each local directory.
 DISK_WARMUP_BYTES = 200 * 1024 * 1024
