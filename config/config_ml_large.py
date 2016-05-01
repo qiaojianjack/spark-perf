@@ -28,7 +28,7 @@ SPARK_CONF_DIR = SPARK_HOME_DIR + "/conf"
 # For local clusters: "spark://%s:7077" % socket.gethostname()
 # For Yarn clusters: "yarn"
 # Otherwise, the default uses the specified EC2 cluster
-SPARK_CLUSTER_URL = open("/root/spark-ec2/cluster-url", 'r').readline().strip()
+SPARK_CLUSTER_URL = os.environ['SPARKURL']
 IS_YARN_MODE = "yarn" in SPARK_CLUSTER_URL
 IS_MESOS_MODE = "mesos" in SPARK_CLUSTER_URL
 
